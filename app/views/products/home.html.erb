@@ -1,0 +1,8 @@
+<h1>Hello World!</h1>
+<hr>
+<div id="content">
+  <p><%= @products.count %></p>
+  <% @products.each do |product|%>
+    <p><%= product.name %></p>
+  <% end %>
+</div>
