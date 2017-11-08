@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  def home
-    @products = Product.order(:name)
+  def show
+    @product = Product.find(params[:id])
   end
 end

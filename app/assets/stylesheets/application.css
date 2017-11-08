@@ -24,3 +24,29 @@ body {
 h1 {
   text-align: center;
 }
+
+p {
+  margin: 15px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: inline;
+}
+
+li:after {
+  content: " --> ";
+}
+
+li:last-child:after {
+  content: "";
+}
+
+#product {
+  background-color: #555;
+  margin: 20px;
+  width: 500px;
+}

@@ -1,11 +1,7 @@
 class CategoriesController < ApplicationController
 
   def show
-    @category = Category.find(params[:name])
-    if @category == nil
-      @product = nil
-    elsif
-      @products = Product.where(category: @category);
-    end
+    @category = Category.where(name: params[:name])[0]
+    @thing = params[:name]
   end
 end
