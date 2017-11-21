@@ -13,11 +13,11 @@
  *= require_self
  */
 body {
-  background-color: #333;
+  /*background-color: #333;*/
 }
 
 * {
-  color: #eee;
+  /*color: #eee;*/
 }
 
 h1 {
@@ -44,13 +44,20 @@ li:last-child:after {
   content: "";
 }
 
-#product {
-  background-color: #555;
+section {
+  /*background-color: #555;*/
+  border: 1px solid #000;
   margin: 20px;
   width: 500px;
   padding: 10px;
 }
 
+form {
+  right: 0px;
+  position: relative;
+}
+
+/*
 a:link {
     color: #eee;
 }
@@ -70,3 +77,4 @@ a:active {
 input {
   color: #000;
 }
+*/

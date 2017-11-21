@@ -1,13 +1,5 @@
-<%= render 'header', title: @category.name%>
-<%= form_tag(category_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
-<%= submit_tag "Search" %>
-<% end %>
-<ul>
-  <li><%= link_to 'Home', home_path %></li>
-  <li><%= @category.name %></li>
-</ul>
-<hr>
+<%= render 'header', title: @category.name %>
+
 <div id="product">
   <p><%= @category.description %></p>
   <hr>

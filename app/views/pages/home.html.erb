@@ -1,21 +1,12 @@
-<h1>This is my wicked awesome shopping site!</h1>
-<h3><%= link_to "Home", home_path %> | <%= link_to "About", about_path %></h3>
-<hr>
-<%= form_tag(home_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
-<%= submit_tag "Search" %>
+<%= render 'header', title: 'This is my wicked awesome website!' %>
+<main>
+<h2>Here are some wicked awesome categories!</h2>
+<% @categories.each do |category| %>
+  <section>
+    <h3><%= link_to category.name, category_path(category.name) %></h3>
+    <span><%= category.methods %> products</span>
+    <hr>
+    <p><%= category.description %></p>
+  </section>
 <% end %>
-<div id="product">
-  <p>Here are some wicked awesome categories!<p>
-  <hr>
-  <% @categories.each do |category| %>
-  <p><%= link_to category.name, category_path(category.name) %></p>
-  <% end %>
-  <% if @products.present? %>
-    <% @products.each do |product| %>
-      <p><%= product.name %></p>
-    <% end %>
-  <% else %>
-    <p>@products is not present</p>
-  <% end %>
-</div>
+</main>
