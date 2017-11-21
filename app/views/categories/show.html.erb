@@ -1,16 +1,11 @@
-<%= render 'header', title: @category.name %>
-
-<div id="product">
-  <p><%= @category.description %></p>
-  <hr>
-  <% @category.products.each do |product| %>
-  <p><%= link_to product.name, product_path(product.id) %></p>
-  <% end %>
-  <% if @products.present? %>
-    <% @products.each do |product| %>
-      <p><%= product.name %></p>
-    <% end %>
-  <% else %>
-    <p>@products is not present</p>
-  <% end %>
-</div>
+<%= render 'header' %>
+<main>
+  <h2><%= @category.name %></h2>
+<% @category.products.each do |product| %>
+  <section>
+    <h3><%= link_to product.name, product_path(product.name) %></h3>
+    <hr>
+    <p><%= product.description %></p>
+  </section>
+<% end %>
+</main>
