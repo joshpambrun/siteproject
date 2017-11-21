@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   get 'product/:id', to: 'products#show', as: 'product'
   
   get 'category/:name', to: 'categories#show', as: 'category'
+  
+  #get 'search?q=:query', to: 'pages#search', as: 'search'
 end

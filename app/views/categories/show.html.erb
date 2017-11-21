@@ -1,6 +1,8 @@
-<h1>Category : <%= @category.name %></h1>
-<h3><%= link_to "Home", home_path %> | <%= link_to "About", about_path %></h3>
-<hr>
+<%= render 'header', title: @category.name%>
+<%= form_tag(category_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+<%= submit_tag "Search" %>
+<% end %>
 <ul>
   <li><%= link_to 'Home', home_path %></li>
   <li><%= @category.name %></li>
@@ -9,9 +11,14 @@
 <div id="product">
   <p><%= @category.description %></p>
   <hr>
-  <ul>
-    <% @category.products.each do |product| %>
-    <li><%= link_to product.name, product_path(product.id) %></li>
+  <% @category.products.each do |product| %>
+  <p><%= link_to product.name, product_path(product.id) %></p>
+  <% end %>
+  <% if @products.present? %>
+    <% @products.each do |product| %>
+      <p><%= product.name %></p>
     <% end %>
-  </ul>
+  <% else %>
+    <p>@products is not present</p>
+  <% end %>
 </div>

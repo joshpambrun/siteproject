@@ -10,7 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
 body {
@@ -49,4 +48,25 @@ li:last-child:after {
   background-color: #555;
   margin: 20px;
   width: 500px;
+  padding: 10px;
+}
+
+a:link {
+    color: #eee;
+}
+
+a:visited {
+    color: #eee;
+}
+
+a:hover {
+    color: #eee;
+}
+
+a:active {
+    color: #eee;
+} 
+
+input {
+  color: #000;
 }

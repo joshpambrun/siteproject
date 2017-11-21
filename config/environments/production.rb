@@ -88,4 +88,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  
+  # Keeps active admin css in check
+  config.assets.precompile += ['active_admin.css']
 end
