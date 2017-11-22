@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   get 'category/:name', to: 'categories#show', as: 'category'
   
   get 'search', to: 'pages#search', as: 'search'
+  
+  get 'category/:name/search', to: 'categories#search', as: 'category_search'
 end

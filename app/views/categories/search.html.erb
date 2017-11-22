@@ -3,13 +3,13 @@
   <nav class="search_nav">
     <h2><%= @category.name %></h2>
     <%= form_tag(category_search_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search for a product" %>
-    <%= submit_tag "Search" %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search for a product" %>
+      <%= submit_tag "Search" %>
     <% end %>
   </nav>
   <article>
-    <% @category.products.each do |product| %>
-      <%= render 'product', product: product %>
+    <% @products.each do |product| %>
+    <%= render 'product', product: product %>
     <% end %>
-  </article
+  </article>
 </main>

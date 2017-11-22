@@ -50,6 +50,7 @@ section {
   margin: 20px;
   width: 500px;
   padding: 10px;
+  display: inline-block;
 }
 
 form {
@@ -57,24 +58,10 @@ form {
   position: relative;
 }
 
-/*
-a:link {
-    color: #eee;
+.search_nav h2, .search_nav form, .search_nav p {
+  display: inline-block;
 }
 
-a:visited {
-    color: #eee;
+.search_nav form {
+  float: right;
 }
-
-a:hover {
-    color: #eee;
-}
-
-a:active {
-    color: #eee;
-} 
-
-input {
-  color: #000;
-}
-*/
