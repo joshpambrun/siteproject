@@ -62,6 +62,6 @@ form {
   display: inline-block;
 }
 
-.search_nav form {
+#login {
   float: right;
 }

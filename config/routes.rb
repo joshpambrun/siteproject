@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   
   get '/', to: 'pages#home', as: 'home'
   
+  get 'login', to: 'user#login', as: 'login'
+  
   get 'about', to: 'pages#about', as: 'about'
   
   get 'product/:id', to: 'products#show', as: 'product'
