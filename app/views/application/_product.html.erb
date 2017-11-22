@@ -1,5 +1,5 @@
 <section class="search_result">
-  <h3><%= link_to product.name, product_path(product.name) %></h3>
+  <h3><%= link_to product.name, product_path(product.id) %></h3>
   <button class="add_wishlist" value="<%= product.id %>">Add to wishlist</button>
   <hr>
   <p><%= product.description %></p>

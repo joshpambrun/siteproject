@@ -11,4 +11,10 @@
   </section>
 <% end %>
 </article>
+<h2>Here are the products current in the store!</h2>
+<article>
+  <% @products.each do |product| %>
+  <%= render 'product', product: product %>
+  <% end %>
+</article
 </main>
