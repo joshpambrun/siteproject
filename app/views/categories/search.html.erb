@@ -8,7 +8,7 @@
     <% end %>
   </nav>
   <article>
-  <% if @product != nil %>
+  <% if @products != nil %>
     <% @products.each do |product| %>
     <%= render 'product', product: product %>
     <% end %>

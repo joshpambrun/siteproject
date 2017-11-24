@@ -16,4 +16,10 @@ Rails.application.routes.draw do
   get 'search', to: 'pages#search', as: 'search'
   
   get 'category/:name/search', to: 'categories#search', as: 'category_search'
+  
+  get 'user/cart', to: 'user#cart', as: 'cart'
+  
+  get 'user/cart/add', to: 'user#add', as: 'cart_add'
+  
+  get 'user/cart/del', to: 'user#del', as: 'cart_del'
 end

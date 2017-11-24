@@ -1,6 +1,7 @@
 <section class="search_result">
   <h3><%= link_to product.name, product_path(product.id) %></h3>
   <button class="add_wishlist" value="<%= product.id %>">Add to wishlist</button>
+  <button class="del_wishlist" value="<%= product.id %>">Remove from wishlist</button>
   <hr>
   <p><%= product.description %></p>
 </section>
