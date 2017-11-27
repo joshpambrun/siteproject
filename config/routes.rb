@@ -5,7 +5,13 @@ Rails.application.routes.draw do
   
   get '/', to: 'pages#home', as: 'home'
   
-  get 'login', to: 'user#login', as: 'login'
+  get 'signup', to: 'user#signup', as: 'signup'
+  
+  post 'signup', to: 'user#signup', as: 'signup_submit'
+  
+  post 'login', to: 'user#login', as: 'login'
+  
+  post 'logout', to: 'user#logout', as: 'logout'
   
   get 'about', to: 'pages#about', as: 'about'
   
@@ -17,9 +23,11 @@ Rails.application.routes.draw do
   
   get 'category/:name/search', to: 'categories#search', as: 'category_search'
   
-  get 'user/cart', to: 'user#cart', as: 'cart'
+  get 'user', to: 'user#show', as: 'user'
   
-  get 'user/cart/add', to: 'user#add', as: 'cart_add'
+  get 'checkout', to: 'user#checkout', as: 'checkout'
   
-  get 'user/cart/del', to: 'user#del', as: 'cart_del'
+  get 'wishlistproduct/add', to: 'wishlistproduct#add', as: 'cart_add'
+  
+  get 'wishlistproduct/del', to: 'wishlistproduct#del', as: 'cart_del'
 end

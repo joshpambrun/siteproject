@@ -1,23 +1,35 @@
 $(document).ready(function() {
 
   $("button.add_wishlist").click(function() {
-    var clickedbtnID = $(this).attr('value');
-    $.ajax({
-      url: "user/cart/add",
-      data: {product: clickedbtnID},
-    }).done(function(data) {
-      alert("Added " + data.name + " to wishlist!");
-    });
+    if(!$(this).hasClass("loading")){
+      var clickedbtnID = $(this).attr('value');
+      $(this).html("Loading...");
+      $(this).addClass("loading");
+      $.ajax({
+        url: "wishlistproduct/add",
+        data: {product: clickedbtnID},
+      }).done(function(data) {
+        $("button.add_wishlist").html("Add to cart");
+        $("button.add_wishlist").removeClass("loading");
+        //alert("Added " + data.name + " to wishlist!");
+      });
+    }
   });
   
   $("button.del_wishlist").click(function() {
-    var clickedbtnID = $(this).attr('value');
-    $.ajax({
-      url: "user/cart/del",
-      data: {product: clickedbtnID},
-    }).done(function(data) {
-      alert(data);
-    });
+    if(!$(this).hasClass("loading")){
+      var clickedbtnID = $(this).attr('value');
+      $(this).html("Loading...");
+      $(this).addClass("loading");
+      $.ajax({
+        url: "wishlistproduct/del",
+        data: {product: clickedbtnID},
+      }).done(function(data) {
+        $("button.del_wishlist").html("Remove from cart");
+        $("button.del_wishlist").removeClass("loading");
+        //alert(data);
+      });
+    }
   });
 
 });

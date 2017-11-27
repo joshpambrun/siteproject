@@ -16,5 +16,11 @@
   <% @products.each do |product| %>
   <%= render 'product', product: product %>
   <% end %>
-</article
+</article>
+
+<article>
+  <% @users.each do |user| %>
+  <p><%= user.email %></p>
+  <% end %>
+</article>
 </main>

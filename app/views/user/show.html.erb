@@ -1,0 +1,13 @@
+<%= render 'header' %>
+<header>
+  <h2>Shopping Cart</h2>
+  <%= link_to "Checkout", checkout_path %>
+</header>
+<% @wishlist.each do |wish| %>
+<section>
+<h3><%= link_to wish.product.name, product_path(wish.product.id) %></h3>
+<p><%= wish.quantity %> added to wishlish</p>
+<button class="add_wishlist" value="<%= wish.product.id %>">Add to wishlist</button>
+<button class="del_wishlist" value="<%= wish.product.id %>">Remove from wishlist</button>
+</section>
+<% end %>
