@@ -45,6 +45,7 @@ class UserController < ApplicationController
   
   def show
     @wishlist = Wishlistproduct.where(user: session[:current_user_id])
+    @Orders = Order.where(user: session [:current_user_id])
   end
   
   def checkout
@@ -75,5 +76,45 @@ class UserController < ApplicationController
       end
     end
     redirect_to checkout_path
+  end
+  
+  def create_order
+    @cart = Wishlistproduct.where(user: session[:current_user_id])
+    @total = 0
+    @wishlist.each do |wish|
+      @total += (wish.product.price * wish.quantity)
+    end
+    @total_tax = 0
+    unless @current_user.province.hst != nil
+      @total_tax = @total * @current_user.province.pst
+    else
+      @total_tax = @total * @current_user.province.hst
+    end
+    @total_with_tax = @total + @total_tax
+    
+    # creating order
+    
+    @new_order = @current_user.orders.build
+    @new_order.status = "processing"
+    @new_order.gst = 0.05
+    @new_order.pst = @current_user.province.pst
+    @new_order.hst = @current_user.province.hst
+    @new_order.total = @total_with_tax
+    @new_order.province = @current_user.province
+    @new_order.address = @current_user.address
+    @new_order.user = @current_user
+    @new_order.save
+    
+    @wishlist.each do |wosh|
+      new_order_item = @new_order.orderproduct.build
+      
+      new_order_item.product = wosh.product
+      new_order_item.quantity = wosh.quantity
+      new_order_item.price = wosh.product.price
+      new_order_item.save
+    end
+    
+    @orderproducts = Orderproduct.where(order: @new_order)
+    redirect_to user_path
   end
 end

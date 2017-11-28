@@ -81,5 +81,8 @@
 <hr>
 <section id="checkout_1">
   <p>Submit this order?</p>
+  <%= form_tag(create_order_path, :method => "post", id: "order-form") do %>
+  <%= submit_tag "Order" %>
+<% end %>
 </section>
 <% end %>
