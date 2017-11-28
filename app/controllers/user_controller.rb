@@ -45,7 +45,7 @@ class UserController < ApplicationController
   
   def show
     @wishlist = Wishlistproduct.where(user: session[:current_user_id])
-    @Orders = Order.where(user: session [:current_user_id])
+    @Orders = Order.where(user: session[:current_user_id])
   end
   
   def checkout
@@ -57,9 +57,9 @@ class UserController < ApplicationController
     end
     @total_tax = 0
     unless @current_user.province.hst != nil
-      @total_tax = @total * @current_user.province.pst
+      @total_tax = (@total * @current_user.province.pst) + (@total * 0.05)
     else
-      @total_tax = @total * @current_user.province.hst
+      @total_tax = (@total * @current_user.province.hst) + (@total * 0.05)
     end
     @total_with_tax = @total + @total_tax
   end
@@ -81,14 +81,14 @@ class UserController < ApplicationController
   def create_order
     @cart = Wishlistproduct.where(user: session[:current_user_id])
     @total = 0
-    @wishlist.each do |wish|
+    @cart.each do |wish|
       @total += (wish.product.price * wish.quantity)
     end
     @total_tax = 0
     unless @current_user.province.hst != nil
-      @total_tax = @total * @current_user.province.pst
+      @total_tax = (@total * @current_user.province.pst) + (@total * 0.05)
     else
-      @total_tax = @total * @current_user.province.hst
+      @total_tax = (@total * @current_user.province.hst) + (@total * 0.05)
     end
     @total_with_tax = @total + @total_tax
     
@@ -105,13 +105,14 @@ class UserController < ApplicationController
     @new_order.user = @current_user
     @new_order.save
     
-    @wishlist.each do |wosh|
-      new_order_item = @new_order.orderproduct.build
+    @cart.each do |wosh|
+      new_order_item = @new_order.orderproducts.build
       
       new_order_item.product = wosh.product
       new_order_item.quantity = wosh.quantity
       new_order_item.price = wosh.product.price
       new_order_item.save
+      wosh.delete
     end
     
     @orderproducts = Orderproduct.where(order: @new_order)

@@ -7,8 +7,29 @@
 <section>
 <h3><%= link_to wish.product.name, product_path(wish.product.id) %></h3>
 <p><%= wish.quantity %> added to wishlish</p>
-<button class="add_wishlist" value="<%= wish.product.id %>">Add to wishlist</button>
-<button class="del_wishlist" value="<%= wish.product.id %>">Remove from wishlist</button>
+<button class="add_wishlist" value="<%= wish.product.id %>">Add to cart</button>
+<button class="del_wishlist" value="<%= wish.product.id %>">Remove from cart</button>
 </section>
-<%= @Orders.total %>
+<% end %>
+<hr>
+<header>
+  <h2>Past Orders</h2>
+</header>
+<% @Orders.each do |order| %>
+  <section>
+    <p><strong>Total Price : </strong><%= order.total %></p>
+    <p><%= order.province.name %> | <%= order.address %></p>
+    <table>
+    <% order.orderproducts.each do |ordpro| %>
+    <tr>
+      <td class="table_product_name"><%= ordpro.product.name %></td>
+      <td><strong><%= number_to_currency(ordpro.price) %></strong></td>
+      <td>x</td>
+      <td><strong><%= ordpro.quantity %></strong></td>
+      <td>:</td>
+      <td><strong><%= number_to_currency(ordpro.price * ordpro.quantity) %></strong></td>
+    </tr>
+    <% end %>
+    </table>
+  </section>
 <% end %>
