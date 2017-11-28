@@ -50,10 +50,17 @@ class UserController < ApplicationController
   def checkout
     @provinces = Province.all
     @wishlist = Wishlistproduct.where(user: session[:current_user_id])
-    @total = 0;
+    @total = 0
     @wishlist.each do |wish|
       @total += (wish.product.price * wish.quantity)
-    end   
+    end
+    @total_tax = 0
+    unless @current_user.province.hst != nil
+      @total_tax = @total * @current_user.province.pst
+    else
+      @total_tax = @total * @current_user.province.hst
+    end
+    @total_with_tax = @total + @total_tax
   end
   
   def change_address

@@ -40,6 +40,46 @@
     <td></td>
     <td><%= number_to_currency(@total) %></td>
   </tr>
+  <tr>
+    <td>GST</td>
+    <td><strong>5%</strong></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><%= number_to_currency(0.05 * @total) %></td>
+  </tr>
+  <tr>
+    <% unless @current_user.province.hst != nil %>
+      <td>PST</td>
+    <% else %>
+      <td>HST</td>
+    <% end %>
+    <% unless @current_user.province.hst != nil %>
+      <td><strong><%= @current_user.province.pst %>%</strong></td>
+    <% else %>
+      <td><strong><%= @current_user.province.hst %>%</strong></td>
+    <% end %>
+    <td></td>
+    <td></td>
+    <td></td>
+    <% unless @current_user.province.hst != nil %>
+      <td><%= number_to_currency(@current_user.province.pst * @total) %></td>
+    <% else %>
+      <td><%= number_to_currency(@current_user.province.hst * @total) %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td><strong>Grand Total</strong></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><strong><%= number_to_currency(@total_with_tax) %></strong></td>
+  </tr>
   </table>
+</section>
+<hr>
+<section id="checkout_1">
+  <p>Submit this order?</p>
 </section>
 <% end %>
