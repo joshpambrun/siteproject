@@ -3,7 +3,6 @@ class PagesController < ApplicationController
   def home
     @categories = Category.all
     @products = Product.all
-    @users = User.all
   end
   
   def about

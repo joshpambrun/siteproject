@@ -1,2 +1,18 @@
 <%= render 'header' %>
-<%= @total %>
+<section id="checkout_1">
+<h4>Section 1</h4>
+<p>The total is <%= number_to_currency(@total) %> before tax. You can view all the items at <%= link_to "your cart", user_path %>.</p>
+<hr>
+<% if @current_user.province == nil || @current_user.address == nil %>
+  <p>This account does not have proper address information. Please provide it.</p>
+  <%= form_tag(checkout_path, :method => "get", id: "address-form") do %>
+  <%= collection_select :province, :id, @provinces, :id, :name, include_blank:true %>
+  <br><br>
+  <%= text_field_tag :address, params[:address], placeholder: "Address" %>
+  <%= submit_tag "Set Address" %>
+  <% end %>
+<% end %>
+<% unless @current_user.province == nil %>
+  <%= @current_user.province.name %>
+<% end %>
+</section>

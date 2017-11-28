@@ -48,10 +48,20 @@ class UserController < ApplicationController
   end
   
   def checkout
+    @provinces = Province.all
     @wishlist = Wishlistproduct.where(user: session[:current_user_id])
     @total = 0;
     @wishlist.each do |wish|
       @total += (wish.product.price * wish.quantity)
+    end
+    
+    if params[:province][:id] && params[:address]
+      p = params.permit(:address)
+      @province_id = params[:province][:id].to_i
+      unless @province_id > 13
+        @current_user.province = Province.find(@province_id)
+        @current_user.address = params[:address]
+      end
     end
   end
   
