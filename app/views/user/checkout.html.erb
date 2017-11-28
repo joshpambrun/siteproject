@@ -5,14 +5,41 @@
 <hr>
 <% if @current_user.province == nil || @current_user.address == nil %>
   <p>This account does not have proper address information. Please provide it.</p>
-  <%= form_tag(checkout_path, :method => "get", id: "address-form") do %>
-  <%= collection_select :province, :id, @provinces, :id, :name, include_blank:true %>
+<% else %>
+  <p>You're current address information is:</p>
+  <p><%= @current_user.province.name %> | <%= @current_user.address %></p>
+  <p>You may change it below</p>
+<% end %>
+<%= form_tag(change_address_path, :method => "post", id: "address-form") do %>
+  <%= collection_select nil, :province, @provinces, :id, :name, include_blank:true %>
   <br><br>
   <%= text_field_tag :address, params[:address], placeholder: "Address" %>
   <%= submit_tag "Set Address" %>
-  <% end %>
-<% end %>
-<% unless @current_user.province == nil %>
-  <%= @current_user.province.name %>
 <% end %>
 </section>
+<hr>
+<% unless @current_user.province == nil || @current_user.address == nil %>
+<section id="checkout_2">
+  <h4>Section 2</h4>
+  <table>
+  <% @wishlist.each do |wish| %>
+    <tr>
+      <td class="table_product_name"><%= wish.product.name %></td>
+      <td><strong><%= number_to_currency(wish.product.price) %></strong></td>
+      <td>x</td>
+      <td><strong><%= wish.quantity %></strong></td>
+      <td>=</td>
+      <td><strong><%= number_to_currency(wish.quantity * wish.product.price) %></strong></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>Total</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><%= number_to_currency(@total) %></td>
+  </tr>
+  </table>
+</section>
+<% end %>

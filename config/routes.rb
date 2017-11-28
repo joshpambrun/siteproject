@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   
   get 'checkout', to: 'user#checkout', as: 'checkout'
   
+  post 'change_address', to: 'user#change_address', as: 'change_address'
+  
   get 'wishlistproduct/add', to: 'wishlistproduct#add', as: 'cart_add'
   
   get 'wishlistproduct/del', to: 'wishlistproduct#del', as: 'cart_del'

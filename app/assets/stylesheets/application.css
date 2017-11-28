@@ -69,3 +69,7 @@ form {
 #name_header {
   float: right;
 }
+
+.table_product_name {
+  width: 500px;
+}

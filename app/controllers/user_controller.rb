@@ -53,16 +53,20 @@ class UserController < ApplicationController
     @total = 0;
     @wishlist.each do |wish|
       @total += (wish.product.price * wish.quantity)
-    end
-    
-    if params[:province][:id] && params[:address]
-      p = params.permit(:address)
-      @province_id = params[:province][:id].to_i
-      unless @province_id > 13
-        @current_user.province = Province.find(@province_id)
-        @current_user.address = params[:address]
-      end
-    end
+    end   
   end
   
+  def change_address
+    if params[:province] && params[:address]
+      if params[:province] != "" && params[:address] != ""
+        p = params.permit(:address, :province)
+        unless p[:province].to_i > 13
+          @current_user.province = Province.find(p[:province])
+          @current_user.address = p[:address]
+          @current_user.save
+        end
+      end
+    end
+    redirect_to checkout_path
+  end
 end
