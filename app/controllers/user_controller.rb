@@ -1,15 +1,14 @@
 class UserController < ApplicationController
-
   def signup
     unless session[:current_user_id] == nil
       if params[:email] && params[:password]
         @user = User.where(email: params[:email])
         if @user.empty?
-          @thing = "There was a problem registering that account"
+          @thing = 'There was a problem registering that account'
           p = params.permit(:email, :password)
           user = User.create(email: p[:email], password: p[:password])
           unless user == nil
-            @thing = "Account registered"
+            @thing = 'Account registered'
           end
         else
           @thing = "That email is already taken"
@@ -17,7 +16,6 @@ class UserController < ApplicationController
       end
     end
   end
-  
   def login
     user = User.where(email: params[:email], password: params[:password])
     unless user.empty?
@@ -25,29 +23,14 @@ class UserController < ApplicationController
     end
     redirect_to home_path
   end
-  
   def logout
     session[:current_user_id] = nil
     redirect_to home_path
   end
-
-  # def add
-  #   p = params.permit(:product => [])
-  #   @new_cart_item = Wishlistproduct.new(:quantity => 1, :user => User.first, :product => Product.first)
-  #   @new_cart_item.save
-  #   
-  #   render :json => @new_cart_item.product
-  # end
-  # 
-  # def del
-  # 
-  # end
-  
   def show
     @wishlist = Wishlistproduct.where(user: session[:current_user_id])
     @Orders = Order.where(user: session[:current_user_id])
   end
-  
   def checkout
     @provinces = Province.all
     @wishlist = Wishlistproduct.where(user: session[:current_user_id])
@@ -63,10 +46,9 @@ class UserController < ApplicationController
     end
     @total_with_tax = @total + @total_tax
   end
-  
   def change_address
     if params[:province] && params[:address]
-      if params[:province] != "" && params[:address] != ""
+      if params[:province] != '' && params[:address] != ''
         p = params.permit(:address, :province)
         unless p[:province].to_i > 13
           @current_user.province = Province.find(p[:province])
@@ -77,7 +59,6 @@ class UserController < ApplicationController
     end
     redirect_to checkout_path
   end
-  
   def create_order
     @cart = Wishlistproduct.where(user: session[:current_user_id])
     @total = 0
@@ -91,11 +72,8 @@ class UserController < ApplicationController
       @total_tax = (@total * @current_user.province.hst) + (@total * 0.05)
     end
     @total_with_tax = @total + @total_tax
-    
-    # creating order
-    
     @new_order = @current_user.orders.build
-    @new_order.status = "processing"
+    @new_order.status = 'processing'
     @new_order.gst = 0.05
     @new_order.pst = @current_user.province.pst
     @new_order.hst = @current_user.province.hst
@@ -104,7 +82,6 @@ class UserController < ApplicationController
     @new_order.address = @current_user.address
     @new_order.user = @current_user
     @new_order.save
-    
     @cart.each do |wosh|
       new_order_item = @new_order.orderproducts.build
       
@@ -114,9 +91,8 @@ class UserController < ApplicationController
       new_order_item.save
       wosh.delete
     end
-    
     @orderproducts = Orderproduct.where(order: @new_order)
-    flash[:message] = "Order proccessed succesfully"
+    flash[:message] = 'Order proccessed succesfully'
     redirect_to user_path
   end
 end
