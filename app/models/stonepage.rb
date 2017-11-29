@@ -1,0 +1,2 @@
+class Stonepage < ApplicationRecord
+end

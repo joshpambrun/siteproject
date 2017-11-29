@@ -6,7 +6,7 @@
 <% @wishlist.each do |wish| %>
 <section>
 <h3><%= link_to wish.product.name, product_path(wish.product.id) %></h3>
-<p><%= wish.quantity %> added to wishlish</p>
+<p><%= wish.quantity %> added to card</p>
 <button class="add_wishlist" value="<%= wish.product.id %>">Add to cart</button>
 <button class="del_wishlist" value="<%= wish.product.id %>">Remove from cart</button>
 </section>

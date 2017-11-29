@@ -6,6 +6,11 @@ class PagesController < ApplicationController
   end
   
   def about
+    @stonepage = Stonepage.where(title: "About")[0]
+  end
+  
+  def contact
+    @stonepage = Stonepage.where(title: "Contact")[0]
   end
   
   def search

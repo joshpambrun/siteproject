@@ -116,6 +116,7 @@ class UserController < ApplicationController
     end
     
     @orderproducts = Orderproduct.where(order: @new_order)
+    flash[:message] = "Order proccessed succesfully"
     redirect_to user_path
   end
 end
