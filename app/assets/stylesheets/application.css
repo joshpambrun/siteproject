@@ -53,6 +53,12 @@ section {
   display: inline-block;
 }
 
+#flash_message {
+  border: 1px solid #000;
+  background-color: #bbffbb;
+  text-align: center;
+}
+
 form {
   right: 0px;
   position: relative;
