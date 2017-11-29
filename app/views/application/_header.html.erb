@@ -19,7 +19,13 @@
   <%= submit_tag "Login" %>
   <% end %>
 <% end %>
+<%= link_to "Checkout", checkout_path %>
 </span>
 </nav>
 <hr>
 </header>
+<% unless flash[:message] == nil %>
+<header id ="flash_message">
+  <p><%= flash[:message] %></p>
+</header>
+<% end %>
