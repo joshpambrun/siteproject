@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   validates :stock, :price, :sale_price, :rating, numericality: true;
   belongs_to :category
   has_many :wishlistproducts
+  mount_uploader :picture, ImageUploader
   
   def self.search(search)
     where("name LIKE ?", "%#{search}%")

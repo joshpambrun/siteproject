@@ -1,6 +1,9 @@
 <%= render 'header' %>
 
 <div id="product">
+  <% unless @product.picture.current_path == nil %>
+    <%= image_tag(@product.picture.url) %>
+  <% end %>
   <p><%= @product.description %></p>
   <hr>
   <p>Price : <%= @product.price %> | Stock : <%= @product.stock %></p>
