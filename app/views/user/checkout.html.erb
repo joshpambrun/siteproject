@@ -55,9 +55,9 @@
       <td>HST</td>
     <% end %>
     <% unless @current_user.province.hst != nil %>
-      <td><strong><%= @current_user.province.pst %>%</strong></td>
+      <td><strong><%= @current_user.province.pst * 100 %>%</strong></td>
     <% else %>
-      <td><strong><%= @current_user.province.hst %>%</strong></td>
+      <td><strong><%= @current_user.province.hst * 100 %>%</strong></td>
     <% end %>
     <td></td>
     <td></td>
